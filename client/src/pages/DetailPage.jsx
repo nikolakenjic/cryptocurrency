@@ -50,7 +50,6 @@ const DetailPage = () => {
   const fetchData = useCallback(async () => {
     try {
       dispatch(setIsLoading(true));
-      console.log('fetch using refresh');
       const response = await fetchUrl.get(`/currency?page=${currentPage}`);
 
       dispatch(setData(response.data.data));
