@@ -5,8 +5,3 @@ const fetchUrl = axios.create({
 });
 
 export default fetchUrl;
-
-// headers: {
-//   'Content-Type': 'application/json',
-// },
-// withCredentials: true,
