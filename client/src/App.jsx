@@ -8,7 +8,7 @@ import {
 } from './pages';
 import store from './store/store';
 
-// loaders
+// Loaders
 import { loader as detailLoader } from './pages/DetailPage';
 // Action
 import { action as registerAction } from './pages/RegisterPage';
