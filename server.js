@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(express.static(join(__dirname, 'client/dist')));
+app.use(express.static(join(__dirname, './public')));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -30,7 +30,7 @@ app.use('/api/v1/currency', cryptoRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+  res.sendFile(path.join(__dirname, './public', 'index.html'));
 });
 
 // Errors
