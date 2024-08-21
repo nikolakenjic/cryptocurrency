@@ -14,7 +14,7 @@ const RegisterPage = () => {
     <Wrapper>
       <Form method="post" className="form">
         <h4>Register</h4>
-        <FormRow type="text" name="firstName" />
+        <FormRow type="text" name="firstName" labelText="First Name" />
         <FormRow type="text" name="lastName" labelText="Last Name" />
         <FormRow type="text" name="username" />
         <FormRow type="email" name="email" />
@@ -43,7 +43,7 @@ export const action = async ({ request }) => {
   try {
     await fetchUrl.post('/auth/register', data);
 
-    toast.success('Register Successfully');
+    toast.success('Successfully registered');
     return redirect('/login');
   } catch (err) {
     const errMsg = err?.response?.data?.msg;

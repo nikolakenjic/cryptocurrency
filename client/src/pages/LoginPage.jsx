@@ -44,7 +44,7 @@ export const action =
       const response = await fetchUrl.post('/auth/login', data);
 
       store.dispatch(loginUser(response.data.user));
-      toast.success('Login Successfully!');
+      toast.success('Login successful');
       return redirect('/');
     } catch (err) {
       const errMsg = err?.response?.data?.msg;

@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Wrapper from '../assets/wrappers/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../UI/Button';

@@ -4,7 +4,7 @@ export const authenticateUser = (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
-    throw new Error('You must be login to have access to this route');
+    throw new Error('Please login in order to view crypto data details');
   }
 
   try {
