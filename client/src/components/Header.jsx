@@ -15,7 +15,6 @@ const Header = () => {
     navigate('/');
     dispatch(logoutUser());
     await fetchUrl.get('/auth/logout');
-    toast.success('Logout Successfully!');
   };
 
   return (

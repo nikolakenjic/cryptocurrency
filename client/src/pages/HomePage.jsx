@@ -27,7 +27,7 @@ const HomePage = () => {
     } catch (err) {
       console.error('Error fetching data:', err);
       dispatch(setIsLoading(false));
-      dispatch(setIsError(err.response.data.msg || 'Something Went Wrong.'));
+      dispatch(setIsError(err?.response?.data?.msg || 'Something Went Wrong.'));
     }
   }, [currentPage, dispatch]);
 

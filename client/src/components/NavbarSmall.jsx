@@ -9,6 +9,7 @@ import { BiX } from 'react-icons/bi';
 const NavbarSmall = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+
   return (
     <Wrapper>
       <BiX
