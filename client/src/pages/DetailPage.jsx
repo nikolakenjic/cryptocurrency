@@ -1,15 +1,17 @@
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
-import CheckRegLog from '../components/CheckRegLog';
 import { redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchUrl from '../utils/axios';
 import { setData } from '../store/slices/data-slice';
 import { convertToSelectedCurrency } from '../utils/formattedCurrency';
+
+import CheckRegLog from '../components/CheckRegLog';
 import Wrapper from '../assets/wrappers/DetailPage';
 import Button from '../UI/Button';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { setIsLoading, setIsError } from '../store/slices/app-loading-slice';
+import Spinner from '../UI/Spinner';
 
 const DetailPage = () => {
   const dispatch = useDispatch();
@@ -65,13 +67,7 @@ const DetailPage = () => {
     fetchData();
   };
 
-  if (isLoading) {
-    return (
-      <div style={{ textAlign: 'center', marginTop: '7rem' }}>
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
+  if (isLoading) return <Spinner />;
 
   if (isError) {
     return (

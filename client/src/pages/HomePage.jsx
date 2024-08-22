@@ -4,13 +4,9 @@ import { useCallback, useEffect } from 'react';
 import { setData, setPageData } from '../store/slices/data-slice';
 import { Wrapper } from '../assets/wrappers/HomePage';
 import Button from '../UI/Button';
-import {
-  CryptocurrencyList,
-  Error,
-  Loading,
-  PageBtnContainer,
-} from '../components';
+import { CryptocurrencyList, Error, PageBtnContainer } from '../components';
 import { setIsLoading, setIsError } from '../store/slices/app-loading-slice';
+import Spinner from '../UI/Spinner';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -39,7 +35,7 @@ const HomePage = () => {
     fetchData();
   };
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Spinner />;
   if (isError) return <Error isError={isError} />;
 
   const cryptocurrencyList = data?.map((crypto) => (

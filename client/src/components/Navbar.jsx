@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/coinmarketcap-1.svg';
-import logo2 from '../assets/images/pngaaa.com-6807017.png';
-import ThemeToggle from './ThemeToggle';
-import Wrapper from '../assets/wrappers/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import FiatCurrency from './FiatCurrency';
-import { BiMenu } from 'react-icons/bi';
 import useWindowSize from '../hooks/useWindowSize';
 import {
   setCloseModal,
   setOpenModal,
   setToggleMenu,
 } from '../store/slices/ui-slice';
+
+import logo from '../assets/images/coinmarketcap-1.svg';
+import logo2 from '../assets/images/pngaaa.com-6807017.png';
+import ThemeToggle from './ThemeToggle';
+import Wrapper from '../assets/wrappers/Navbar';
+import FiatCurrency from './FiatCurrency';
+import { BiMenu } from 'react-icons/bi';
 
 const Header = () => {
   const dispatch = useDispatch();
