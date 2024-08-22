@@ -3,16 +3,30 @@ import { StatusCodes } from 'http-status-codes';
 const fetchAllCryptoData = async () => {
   const API_KEY_HEADERS = process.env.CMC_PRO_API_KEY;
 
-  const response = await fetch(
-    'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    {
-      headers: {
-        'X-CMC_PRO_API_KEY': API_KEY_HEADERS,
-      },
+  if (!API_KEY_HEADERS) {
+    throw new Error('API key is missing');
+  }
+
+  try {
+    const response = await fetch(
+      'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+      {
+        headers: {
+          'X-CMC_PRO_API_KEY': API_KEY_HEADERS,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
     }
-  );
-  const data = await response.json();
-  return data;
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+    throw error;
+  }
 };
 
 export const getAllData = async (req, res, next) => {
@@ -45,7 +59,9 @@ export const getAllData = async (req, res, next) => {
     res.status(StatusCodes.OK).json(responseData);
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
   }
 };
 

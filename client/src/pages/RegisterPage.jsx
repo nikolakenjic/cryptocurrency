@@ -14,7 +14,7 @@ const RegisterPage = () => {
     <Wrapper>
       <Form method="post" className="form">
         <h4>Register</h4>
-        <FormRow type="text" name="firstName" labelText="First Name" />
+        <FormRow type="text" name="firstName" labelText="First" />
         <FormRow type="text" name="lastName" labelText="Last Name" />
         <FormRow type="text" name="username" />
         <FormRow type="email" name="email" />
