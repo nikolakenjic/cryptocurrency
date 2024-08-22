@@ -51,7 +51,12 @@ const HomePage = () => {
       <div className="main__container-title">
         <h2>Cryptocurrency List</h2>
 
-        <Button onClick={handleRefresh} type="button" btnName="Refresh Data" />
+        <Button
+          onClick={handleRefresh}
+          type="button"
+          btnName="Refresh Data"
+          disabled={isLoading}
+        />
       </div>
 
       <table className="crypto-table">
