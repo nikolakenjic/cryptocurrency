@@ -16,10 +16,14 @@ const HomePage = () => {
   const fetchData = useCallback(async () => {
     try {
       dispatch(setIsLoading(true));
-      const response = await fetchUrl.get(`/currency?page=${currentPage}`);
+      const response = await fetchUrl.get(
+        `/currency?page=${currentPage}&_=${new Date().getTime()}`
+      );
+
       dispatch(setData(response.data.data));
       dispatch(setPageData(response.data.pagination));
       dispatch(setIsLoading(false));
+      dispatch(setIsError(null));
     } catch (err) {
       console.error('Error fetching data:', err);
       dispatch(setIsLoading(false));
@@ -36,7 +40,7 @@ const HomePage = () => {
   };
 
   if (isLoading) return <Spinner />;
-  if (isError) return <Error isError={isError} />;
+  if (isError) return <Error isError={isError} onRetry={handleRefresh} />;
 
   const cryptocurrencyList = data?.map((crypto) => (
     <CryptocurrencyList key={crypto.id} {...crypto} />

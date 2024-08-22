@@ -1,46 +1,16 @@
 import { StatusCodes } from 'http-status-codes';
-
-const fetchAllCryptoData = async () => {
-  const API_KEY_HEADERS = process.env.CMC_PRO_API_KEY;
-
-  if (!API_KEY_HEADERS) {
-    throw new Error('API key is missing');
-  }
-
-  try {
-    const response = await fetch(
-      'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-      {
-        headers: {
-          'X-CMC_PRO_API_KEY': API_KEY_HEADERS,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error.message);
-    throw error;
-  }
-};
+import { fetchCryptoData } from '../services/apiCrypto.js';
 
 export const getAllData = async (req, res, next) => {
   try {
-    const allData = await fetchAllCryptoData();
+    const allData = await fetchCryptoData();
 
     const { page: currentPage } = req.query;
     const page = parseInt(currentPage) || 1;
     const limit = 10;
 
     const totalCount = allData.data.length;
-
     const totalPages = Math.ceil(totalCount / limit);
-
     const startIndex = (page - 1) * limit;
 
     const data = allData.data.slice(startIndex, startIndex + limit);
@@ -51,12 +21,7 @@ export const getAllData = async (req, res, next) => {
       totalCount,
     };
 
-    const responseData = {
-      data,
-      pagination,
-    };
-
-    res.status(StatusCodes.OK).json(responseData);
+    res.status(StatusCodes.OK).json({ data, pagination });
   } catch (error) {
     console.error('Error:', error);
     res
@@ -67,20 +32,11 @@ export const getAllData = async (req, res, next) => {
 
 export const getSingleData = async (req, res, next) => {
   const { id } = req.params;
-  const API_KEY_HEADERS = process.env.CMC_PRO_API_KEY;
 
   try {
-    const response = await fetch(
-      'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-      {
-        headers: {
-          'X-CMC_PRO_API_KEY': API_KEY_HEADERS,
-        },
-      }
-    );
-    const data = await response.json();
+    const allData = await fetchCryptoData();
 
-    const singleData = data.data.find((item) => item.id === Number(id));
+    const singleData = allData.data.find((item) => item.id === Number(id));
 
     if (!singleData) {
       return res.status(404).json({ error: 'Data not found' });
