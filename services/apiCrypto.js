@@ -31,6 +31,7 @@ export const fetchCryptoData = async () => {
 
     const data = await response.json();
     cryptoCache.set('cryptoData', data);
+
     return data;
   } catch (error) {
     console.error('Error fetching data:', error.message);
