@@ -51,5 +51,3 @@
 ### Start App
 
 - Start the server: **npm run dev**
-
-> > > > > > > 97ebff175f9bc9dfe626fb1a6deb8cb38ffcd9b3
