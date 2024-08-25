@@ -46,7 +46,7 @@ const HomePage = () => {
   return (
     <Wrapper>
       <div className="main__container-title">
-        <h2>Cryptocurrency List</h2>
+        <h2>Nikola</h2>
         <Button
           onClick={handleRefresh}
           type="button"
