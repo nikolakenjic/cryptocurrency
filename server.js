@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(express.static(join(__dirname, './public')));
+app.use(express.static(join(__dirname, 'client/dist')));
 app.use(express.json());
 app.use(cookieParser());
 
