@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup-project": "npm install && cd client && npm install",
-    "client": "cd client && npm run dev",
     "server": "nodemon server",
-    "dev": "concurrently -k \"npm run client\" \"npm run server --delay 5000\""
+    "client": "cd client && npm run dev",
+    "dev": "concurrently  \"npm run client\" \"npm run server\""
   },
   "author": "",
   "license": "ISC",
