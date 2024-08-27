@@ -14,7 +14,7 @@ export const Wrapper = styled.main`
     align-items: center;
     justify-content: center;
     row-gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
   }
 
